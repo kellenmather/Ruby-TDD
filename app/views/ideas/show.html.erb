@@ -1,0 +1,16 @@
+<p><%= @idea.user.alias %> says:</p>
+<p><%= @idea.text %></p>
+
+<p>People who liked this post:</p>
+<table>
+  <tr>
+    <th>Alias</th>
+    <th>Name</th>
+  </tr>
+  <% @idea.user_likes.each do |userlike| %>
+  <tr>
+    <td><%= userlike.alias %></td>
+    <td><%= userlike.fn %> <%= userlike.ln %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,24 @@
+<a href="/sessions/<%= session[:user_id] %>" data-method="delete">Log Out</a>
+
+<%= current_user.fn %>
+
+<form action="/ideas" method="post">
+  <input type="text" name="idea[text]" placeholder="Post something witty here...">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="submit" value="Idea!">
+</form>
+
+<% @ideas.each do |idea| %>
+<div>
+  <p><a href="/users/<%= idea.user.id %>"><%= idea.user.fn %></a> says: </p><p><%= idea.text %></p>
+  <% if idea.user_id == current_user.id %>
+    <a href="/ideas/<%= idea.id %>" data-method="delete">Remove</a>
+  <% end%>
+  <% if idea.user_likes.include?(current_user) %>
+  <p>Liked</p>
+  <% else %>
+  <a href="/likes/<%= idea.id %>" data-method="post">Like</a>
+  <% end %>
+  <a href="/ideas/<%= idea.id %>"><%= idea.user_likes.length %> people</a><p> like this.</p>
+</div>
+<% end %>
