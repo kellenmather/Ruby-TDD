@@ -1,4 +1,4 @@
 == README
 
 TDD for the project completed using Rspec and Capybara
-Code can be foudn in the 'spec' folder
+Code can be found in the 'spec' folder
